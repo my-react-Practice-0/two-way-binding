@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+class App extends Component {
+  state =  {
+    name : 'asd'
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  changeName = (newName) => {
+    this.setState({
+      name:newName
+    })
+  }
+
+  changeNameFromInput = (event) => {
+    this.setState({
+      name: event.target.value
+    })
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <button onClick={()=>{return this.changeName('yoyo')}}>change state using anon func</button>
+        <button onClick={this.changeName.bind(this,'bind yoyoy')}>change state using bind</button>
+        <br/><br/>
+        <input type="text" onChange={this.changeNameFromInput} value={this.state.name}/>
+        <br/><br/>
+        {this.state.name}
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
